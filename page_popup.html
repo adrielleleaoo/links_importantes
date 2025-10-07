@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adrielle Leão</title>
+  <style>
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  /* Gradiente do topo (cor inicial) até o fim (cor final) */
+  background: linear-gradient(to bottom, #c2b0e2, #6b68b9);
+  color: #fff;
+  text-align: center;
+  min-height: 100vh; /* garante que o gradiente cubra toda a altura da página */
+}
+
+    header {
+      padding: 30px 20px 10px;
+    }
+
+    header img {
+      max-width: 240px;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin: 15px 0 5px;
+    }
+
+    p {
+      font-size: 1em;
+      opacity: 0.8;
+      margin-bottom: 30px;
+    }
+
+
+.btn {
+  position: relative; /* necessário para posicionar o ícone */
+  display: block;
+  margin: 15px auto;
+  padding: 15px;
+  width: 85%;
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+  color: #162a64;
+  font-size: 1.1em;
+  font-weight: bold;
+  max-width: 400px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-align: center; /* mantém o texto centralizado */
+}
+
+.btn i {
+  position: absolute;
+  left: 15px; /* distância do ícone da borda */
+  top: 50%;
+  transform: translateY(-50%); /* centraliza verticalmente */
+  font-size: 1.3em; /* tamanho do ícone */
+}
+
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: #f4ecff;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px; /* margem em volta */
+      box-sizing: border-box;
+    }
+
+    .popup-content {
+      background: #fff;
+      color: #333;
+      padding: 20px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 400px;
+      text-align: left;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .popup-content h2 {
+      margin-top: 0;
+      color: #412360;
+    }
+
+    .popup-content img {
+      width: 100%;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+
+    .popup .btn {
+      background: #412360;
+      color: #fff;
+    }
+
+    .close {
+      float: right;
+      font-size: 1.4em;
+      cursor: pointer;
+      color: #412360;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="src/logo.png" alt="Logo Adrielle Leão">
+    <!--h1>Adrielle Leão</h1-->
+  </header>
+
+<main>
+    <button class="btn" onclick="openPopup()">
+      <i class="fab fa-whatsapp"></i> Nosso grupo no WhatsApp
+    </button>
+
+    <button class="btn" onclick="window.open('https://youtube.com/@adrielleleaoo','_blank')">
+      <i class="fab fa-youtube"></i> YouTube
+    </button>
+
+    <button class="btn" onclick="window.open('https://www.instagram.com/adrielle.leaoo','_blank')">
+      <i class="fab fa-instagram"></i> Instagram
+    </button>
+
+    <button class="btn" onclick="window.open('https://www.tiktok.com/coin','_blank')">
+      <i class="fab fa-tiktok"></i> Diamantes com 25% OFF
+    </button>
+</main>
+
+  <!-- POPUP -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <h2 id="tes">Como entrar no grupo</h2>
+      <p>O link de convite do WhatsApp não funciona no navegador do TikTok. Para entrar no grupo, siga o passo a passo abaixo.</p>
+
+      <p><b>1.</b> Toque em três pontinhos na parte superior:</p>
+      <img src="src/passo1.png" alt="Passo 1">
+
+      <p><b>2.</b> Depois toque em <b>Abrir no navegador</b>:</p>
+      <img src="src/passo2.png" alt="Passo 2">
+      
+      <button class="btn" id="grupo" onclick="continuar()">Entrar no grupo</button>
+    </div>
+  </div>
+
+  <script>
+    function openPopup() {
+      document.getElementById('popup').style.display = 'flex';  
+      if(estaNoTikTok()){
+          document.getElementById('grupo').style.display = 'none';
+      }
+    }
+
+    function closePopup() {
+      window.location.href = "index.html";
+    }
+
+    function continuar() {
+      // Aqui vai o link do grupo
+      window.open("https://chat.whatsapp.com/D2tpEFLtGcL91WWT6eDC2N", "_blank");
+    }
+    function estaNoTikTok() {
+      const regex = /musical_ly|bytedance/i; 
+      var ua = navigator.userAgent || navigator.vendor || window.opera;
+      //var ua ="Mozilla/5.0 (Linux; Android 14; SM-S911B Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/140.0.7339.207 Mobile Safari/537.36 musical_ly_2024109030 AppName/musical_ly ByteLocale/pt";
+      //document.getElementById('tes').innerText=regex.test(ua);
+      return regex.test(ua);
+    }
+    window.addEventListener('load', () => {
+    const params = new URLSearchParams(window.location.search);    
+      openPopup();    
+  });
+  </script>
+
+</body>
+</html>
