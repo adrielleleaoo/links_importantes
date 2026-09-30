@@ -9,11 +9,10 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  /* Gradiente do topo (cor inicial) até o fim (cor final) */
   background: linear-gradient(to bottom, #c2b0e2, #6b68b9);
   color: #fff;
   text-align: center;
-  min-height: 100vh; /* garante que o gradiente cubra toda a altura da página */
+  min-height: 100vh;
 }
 
     header {
@@ -36,7 +35,7 @@ body {
     }
 
 .btn {
-  position: relative; /* necessário para posicionar o ícone */
+  position: relative;
   display: block;
   margin: 15px auto;
   padding: 15px;
@@ -51,20 +50,39 @@ body {
   transition: 0.3s;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   max-width: 400px;
-  text-align: center; /* mantém o texto centralizado */
+  text-align: center;
 }
 
 .btn i {
   position: absolute;
-  left: 15px; /* distância do ícone da borda */
+  left: 15px;
   top: 50%;
-  transform: translateY(-50%); /* centraliza verticalmente */
-  font-size: 1.3em; /* tamanho do ícone */
+  transform: translateY(-50%);
+  font-size: 1.3em;
 }
 
     .btn:hover {
       transform: scale(1.05);
       background: #f4ecff;
+    }
+
+    /* ESTILO ESPECIAL PARA O BOTÃO DO CURSO */
+    .btn-curso {
+      background: linear-gradient(135deg, #ff9900, #ff5500); /* Fundo chamativo (Laranja vibrante) */
+      color: #fff;
+      font-size: 1.15em;
+      box-shadow: 0 6px 15px rgba(255, 85, 0, 0.4);
+      animation: pulsar 2s infinite; /* Efeito de batida suave para atrair o olho */
+    }
+
+    .btn-curso:hover {
+      background: linear-gradient(135deg, #ffaa15, #ff6610);
+    }
+
+    @keyframes pulsar {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
     }
 
     /* Popup */
@@ -77,7 +95,7 @@ body {
       align-items: center;
       justify-content: center;
       z-index: 1000;
-      padding: 20px; /* margem em volta */
+      padding: 20px;
       box-sizing: border-box;
     }
 
@@ -125,7 +143,6 @@ body {
 
   <header>
     <img src="src/logo.png" alt="Logo Adrielle Leão">
-    <!--h1>Adrielle Leão</h1-->
   </header>
 
 <main>
@@ -149,9 +166,9 @@ body {
       <i class="fab fa-tiktok"></i> Diamantes com 25% OFF
     </button>
 
-    <!-- Novo botão adicionado -->
-    <button class="btn" onclick="window.open('https://ocodigodos15minutos.lovable.app/','_blank')">
-      <i class="fa-solid fa-clock"></i> O Código dos 15 Minutos
+    <!-- Botão do curso melhorado com destaque e nova chamada -->
+    <button class="btn btn-curso" onclick="window.open('https://ocodigodos15minutos.lovable.app/','_blank')">
+      <i class="fa-solid fa-fire"></i> O Código dos 15 Minutos (Vagas Abertas)
     </button>
 </main>
 
@@ -188,8 +205,6 @@ body {
     function estaNoTikTok() {
       const regex = /musical_ly|bytedance/i; 
       var ua = navigator.userAgent || navigator.vendor || window.opera;
-      //var ua ="Mozilla/5.0 (Linux; Android 14; SM-S911B Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/140.0.7339.207 Mobile Safari/537.36 musical_ly_2024109030 AppName/musical_ly ByteLocale/pt";
-      //document.getElementById('tes').innerText=regex.test(ua);
       return regex.test(ua);
     }
     window.addEventListener('load', () => {
